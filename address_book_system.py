@@ -8,7 +8,7 @@ class AddressBook:
     def display_all_contacts(self):
         for contact in self.contacts:
             self.display_contact(contact)
-        
+
     def edit_contact(self, first_name, last_name, new_details):
         for contact in self.contacts:
             if contact['first_name'] == first_name and contact['last_name'] == last_name:
@@ -17,7 +17,16 @@ class AddressBook:
                 return
         print("Contact not found.")
 
+    def delete_contact(self, first_name, last_name):
+        for contact in self.contacts:
+            if contact['first_name'] == first_name and contact['last_name'] == last_name:
+                self.contacts.remove(contact)
+                print("The Contact is Deleted")
+                return
+        print("The Contact is not Found")
+
     def display_contact(self, contact):
+        print("--------------------------")
         print("First Name:", contact['first_name'])
         print("Last Name:", contact['last_name'])
         print("Address:", contact['address'])
@@ -42,9 +51,9 @@ class AddressBookMain:
         zip_code = input("Enter Zip Code: ")
         phone_number = input("Enter Phone Number: ")
         if not phone_number.isdigit():
-            raise TypeError("the phone-number is not a number")
-        if len(phone_number) != 10 :
-            raise Exception("phone number is not length of exact 10")
+            raise TypeError("The phone number is not a number")
+        if len(phone_number) != 10:
+            raise ValueError("Phone number is not of length 10")
         email = input("Enter Email: ")
         print("--------------------------")
 
@@ -59,6 +68,9 @@ class AddressBookMain:
             'email': email
         }
         self.address_book.add_contact(new_contact)
+        address_book_main.display_all_contacts()
+        user_input = int(input("Enter The Number \n 0) To Create Contact \n 1) To Update Contact  \n 2) To Delete Contact \n 3) To Display Contact  \n Enter Any Other Keys To Not Continue Any Operations: "))
+        validations(user_input)
 
     def edit_contact_from_console(self):
         first_name = input("Enter First Name of the contact to edit: ")
@@ -68,6 +80,10 @@ class AddressBookMain:
         new_state = input("Enter New State: ")
         new_zip_code = input("Enter New Zip Code: ")
         new_phone_number = input("Enter New Phone Number: ")
+        if not new_phone_number.isdigit():
+            raise TypeError("The new phone number is not a number")
+        if len(new_phone_number) != 10:
+            raise ValueError("New phone number is not of length 10")
         new_email = input("Enter New Email: ")
 
         new_details = {
@@ -79,30 +95,43 @@ class AddressBookMain:
             'email': new_email
         }
         self.address_book.edit_contact(first_name, last_name, new_details)
+        address_book_main.display_all_contacts()
+        user_input = int(input("Enter The Number \n 0) To Create Contact \n 1) To Update Contact  \n 2) To Delete Contact  \n  3) To Display Contact \n Enter Any Other Keys To Not Continue Any Operations: "))
+        validations(user_input)
 
     def display_all_contacts(self):
         self.address_book.display_all_contacts()
-        
-    def if_you_want_to_edit_contact(self):
-        respone = input("enter yes or no to edit the existing contact")
-        if respone.lower() == "yes" :
-            
-            address_book_main.edit_contact_from_console()
-            
 
+    def delete_contact(self):
+        first_name = input("Enter the first name of user to delete : ")
+        last_name = input("For security purpose, Enter the last name of user to delete : ")
+        self.address_book.delete_contact(first_name, last_name)
+        address_book_main.display_all_contacts()
+        user_input = int(input("Enter The Number \n 0) To Create Contact \n 1) To Update Contact  \n 2) To Delete Contact  \n 3) To Display Contact  \n Enter Any Other Keys To Not Continue Any Operations: "))
+        validations(user_input)
 
 
 address_book_main = AddressBookMain()
 
-number_of_contact_insert = int(input("Enter the number of contacts to be inserted: "))
-for i in range(number_of_contact_insert):
-    address_book_main.add_new_contact_from_console()
 
-address_book_main.display_all_contacts()
+def validations(user_input):
+    if user_input >= 0 and user_input <= 3:
+        if user_input == 0:
+            number_of_contact_insert = int(input("Enter the number of contacts to be inserted: "))
+            for i in range(number_of_contact_insert):
+                address_book_main.add_new_contact_from_console()
+            
+        elif user_input == 1:
+            address_book_main.edit_contact_from_console()
+        elif user_input == 2:
+            address_book_main.delete_contact()
+        elif user_input == 3:
+                address_book_main.display_all_contacts()
 
 
-address_book_main.if_you_want_to_edit_contact()
+        else:
+            print("The given user input is invalid")
 
 
-address_book_main.display_all_contacts()
-
+user_input = int(input("Enter The Number \n 0) To Create Contact \n 1) To Update Contact  \n 2) To Delete Contact \n 3) To Display Contact \n Enter Any Other Keys To Not Continue Any Operations: "))
+validations(user_input)
