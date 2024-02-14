@@ -1,4 +1,4 @@
-class Contact:
+class Address_Book:
     def __init__(self, first_name, last_name, address, city, state, zip_code, phone_number, email):
         self.first_name = first_name
         self.last_name = last_name
@@ -23,5 +23,5 @@ class Contact:
         print("Phone Number:", self.phone_number)
         print("Email:", self.email)
 
-contact1 = Contact("sabari", "nathan", "HSR-Layout", "Bangalore", "Karnataka", "123456", "9344159588", "sabari123.@gmail.com")
+contact1 = Address_Book("sabari", "nathan", "HSR-Layout", "Bangalore", "Karnataka", "123456", "9344159588", "sabari123.@gmail.com")
 contact1.display_contact()
