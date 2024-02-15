@@ -4,7 +4,7 @@ class AddressBook:
 
     def add_contact(self, contact_details):
         self.contacts.append(contact_details)
-        print("The Contact Saved SuccesFully!!")
+        print("The Contact Saved Successfully!!")
 
     def display_all_contacts(self):
         for contact in self.contacts:
@@ -25,7 +25,7 @@ class AddressBook:
                 print("The Contact is Deleted")
                 return
         print("The Contact is not Found")
-
+        
     def display_contact(self, contact):
         print("--------------------------")
         print("First Name:", contact['first_name'])
@@ -42,43 +42,50 @@ class AddressBook:
 class AddressBookMain:
     def __init__(self):
         self.address_books = {}
+        self.address_book = AddressBook()
 
     def add_new_address_book(self, name):
         if name not in self.address_books:
             self.address_books[name] = AddressBook()
             print(f"Address book '{name}' created successfully.")
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook  \n 2) To  Update  The AddressBook \n 3) To Delete Contact To The AddressBook  \n 4) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
+            handle_user_input(user_input)
         else:
             print(f"Address book '{name}' already exists.")
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook  \n 2) To  Update  The AddressBook \n 3) To Delete Contact To The AddressBook  \n 4) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
+            handle_user_input(user_input)
 
-    def add_new_contact_from_console(self, name):
+    def add_new_contact_from_console(self, name):           
         if name in self.address_books:
             address_book = self.address_books[name]
-            first_name = input("Enter First Name: ")
-            last_name = input("Enter Last Name: ")
-            address = input("Enter Address: ")
-            city = input("Enter City: ")
-            state = input("Enter State: ")
-            zip_code = input("Enter Zip Code: ")
-            phone_number = input("Enter Phone Number: ")
-            if not phone_number.isdigit():
-                raise TypeError("The phone number is not a number")
-            if len(phone_number) != 10:
-                raise ValueError("Phone number is not of length 10")
-            email = input("Enter Email: ")
-            print("--------------------------")
+            number_of_contacts = int(input("Enter the number of contacts to be inserted: "))
+            for _ in range(number_of_contacts):
+                first_name = input("Enter First Name: ")
+                last_name = input("Enter Last Name: ")
+                address = input("Enter Address: ")
+                city = input("Enter City: ")
+                state = input("Enter State: ")
+                zip_code = input("Enter Zip Code: ")
+                phone_number = input("Enter Phone Number: ")
+                if not phone_number.isdigit():
+                    raise TypeError("The phone number is not a number")
+                if len(phone_number) != 10:
+                    raise ValueError("Phone number is not of length 10")
+                email = input("Enter Email: ")
+                print("--------------------------")
 
-            new_contact = {
-                'first_name': first_name,
-                'last_name': last_name,
-                'address': address,
-                'city': city,
-                'state': state,
-                'zip_code': zip_code,
-                'phone_number': phone_number,
-                'email': email
-            }
-            address_book.add_contact(new_contact)
-            address_book.display_all_contacts()
+                new_contact = {
+                    'first_name': first_name,
+                    'last_name': last_name,
+                    'address': address,
+                    'city': city,
+                    'state': state,
+                    'zip_code': zip_code,
+                    'phone_number': phone_number,
+                    'email': email
+                }
+                address_book.add_contact(new_contact)
+                print("Contact added successfully.")
         else:
             print(f"Address book '{name}' does not exist.")
 
@@ -130,16 +137,24 @@ class AddressBookMain:
 
 
 address_book_main = AddressBookMain()
+def handle_user_input(user_input):
+    if user_input >= 0 and user_input <= 4:
+        if user_input == 0:
+            address_book_main.add_new_address_book("Friends")
+            address_book_main.add_new_address_book("Family")
+        if user_input == 1:
+            address_book_main.add_new_contact_from_console("Friends")
+            address_book_main.add_new_contact_from_console("Family")
+        if user_input == 2:
+            address_book_main.edit_contact_from_console("Friends")
+        if user_input == 3:
+            address_book_main.delete_contact("Friends")
+        if user_input == 4:
+            address_book_main.display_all_contacts("Friends")
+            address_book_main.display_all_contacts("Family")
+    else:
+        print("The given user input is invalid")
 
-address_book_main.add_new_address_book("Friends")
-address_book_main.add_new_address_book("Family")
 
-address_book_main.add_new_contact_from_console("Friends")
-address_book_main.add_new_contact_from_console("Family")
-
-address_book_main.edit_contact_from_console("Friends")
-
-address_book_main.delete_contact("Family")
-
-address_book_main.display_all_contacts("Friends")
-address_book_main.display_all_contacts("Family")
+user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook  \n 2) To  Update  The AddressBook \n 3) To Delete Contact To The AddressBook  \n 4) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
+handle_user_input(user_input)
