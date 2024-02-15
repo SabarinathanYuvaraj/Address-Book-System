@@ -53,6 +53,10 @@ class AddressBook:
 
 class AddressBookMain:
     address_book_name = ""
+    person=[]
+    person_by_city={}
+    person_by_state={}
+
     def __init__(self):
         self.address_books = {}
         self.address_book = AddressBook()
@@ -177,10 +181,32 @@ class AddressBookMain:
         user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
         handle_user_input(user_input)
 
+    def view_persons_by_City_and_State(self):
+        self.person_by_state = {}
+        self.person_by_city = {}
+
+        for address_book_name, address_book in self.address_books.items():
+            for contact in address_book.contacts:
+                if contact['state'] not in self.person_by_state:
+                    self.person_by_state[contact['state']] = []
+                self.person_by_state[contact['state']].append(contact['first_name'])
+                
+                if contact['city'] not in self.person_by_city:
+                    self.person_by_city[contact['city']] = []
+                self.person_by_city[contact['city']].append(contact['first_name'])
+
+        print("Persons by State:")
+        print(self.person_by_state)
+
+        print("Persons by City:")
+        print(self.person_by_city)
+
+
+                
 
 address_book_main = AddressBookMain()
-def handle_user_input(user_input):
-    if user_input >= 0 and user_input <= 5:
+def handle_user_input(user_input): 
+    if user_input >= 0 and user_input <= 6:
         if user_input == 0:
             address_book_main.add_new_address_book()            
         if user_input == 1:
@@ -195,6 +221,8 @@ def handle_user_input(user_input):
             state_name = input("Enter the State name : ")
             city_name = input("Enter the City name : ")
             address_book_main.search_person_by_state_or_city_name(state_name,city_name)
+        if user_input == 6:
+            address_book_main.view_persons_by_City_and_State()
     else:
         print("The given user input is invalid")
 
