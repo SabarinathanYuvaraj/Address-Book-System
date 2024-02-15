@@ -56,6 +56,8 @@ class AddressBookMain:
     person=[]
     person_by_city={}
     person_by_state={}
+    count_person_by_city={}
+    count_person_by_state={}
 
     def __init__(self):
         self.address_books = {}
@@ -68,11 +70,11 @@ class AddressBookMain:
         if AddressBookMain.address_book_name not in self.address_books:
             self.address_books[AddressBookMain.address_book_name] = AddressBook()
             print(f"Address book '{AddressBookMain.address_book_name}' created successfully.")
-            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5) search person by city and state \n 6) view person by city and state\n 7) count person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
             handle_user_input(user_input)
         else:
             print(f"Address book '{AddressBookMain.address_book_name}' already exists.")
-            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5) search person by city and state \n 6) view person by city and state\n 7) count person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
             handle_user_input(user_input)
 
     def add_new_contact_from_console(self):           
@@ -106,7 +108,7 @@ class AddressBookMain:
                 }
                 address_book.add_contact(new_contact)
                 print("Contact added successfully.")
-            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5) search person by city and state \n 6) view person by city and state\n 7) count person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
             handle_user_input(user_input)
 
                 
@@ -139,7 +141,7 @@ class AddressBookMain:
             }
             address_book.edit_contact(first_name, last_name, new_details)
             address_book.display_all_contacts()
-            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5) search person by city and state \n 6) view person by city and state\n 7) count person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
             handle_user_input(user_input)
 
         else:
@@ -152,7 +154,7 @@ class AddressBookMain:
             last_name = input("For security purpose, Enter the last name of user to delete : ")
             address_book.delete_contact(first_name, last_name)
             address_book.display_all_contacts()
-            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5) search person by city and state \n 6) view person by city and state\n 7) count person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
             handle_user_input(user_input)
 
         else:
@@ -162,7 +164,7 @@ class AddressBookMain:
         if AddressBookMain.address_book_name in self.address_books:
             address_book = self.address_books[AddressBookMain.address_book_name]
             address_book.display_all_contacts()
-            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5) search person by city and state \n 6) view person by city and state\n 7) count person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
             handle_user_input(user_input)
 
         else:
@@ -178,7 +180,7 @@ class AddressBookMain:
                     self.address_book.display_contact(contact)
         if not found:
             print("No contacts found in the specified location.")
-        user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
+        user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5) search person by city and state \n 6) view person by city and state\n 7) count person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
         handle_user_input(user_input)
 
     def view_persons_by_City_and_State(self):
@@ -200,13 +202,36 @@ class AddressBookMain:
 
         print("Persons by City:")
         print(self.person_by_city)
+        
+    def count_persons_by_City_and_State(self):
+        self.count_person_by_state = {}
+        self.count_person_by_city = {}
+
+        for address_book_name, address_book in self.address_books.items():
+            for contact in address_book.contacts:
+                # Count persons by state
+                if contact['state'] not in self.count_person_by_state:
+                    self.count_person_by_state[contact['state']] = 0
+                self.count_person_by_state[contact['state']] += 1
+                
+                # Count persons by city
+                if contact['city'] not in self.count_person_by_city:
+                    self.count_person_by_city[contact['city']] = 0
+                self.count_person_by_city[contact['city']] += 1
+
+        print("Count of Persons by State:")
+        print(self.count_person_by_state)
+
+        print("Count of Persons by City:")
+        print(self.count_person_by_city)
+
 
 
                 
 
 address_book_main = AddressBookMain()
 def handle_user_input(user_input): 
-    if user_input >= 0 and user_input <= 6:
+    if user_input >= 0 and user_input <= 7:
         if user_input == 0:
             address_book_main.add_new_address_book()            
         if user_input == 1:
@@ -223,9 +248,11 @@ def handle_user_input(user_input):
             address_book_main.search_person_by_state_or_city_name(state_name,city_name)
         if user_input == 6:
             address_book_main.view_persons_by_City_and_State()
+        if user_input == 7:
+            address_book_main.count_persons_by_City_and_State()
     else:
         print("The given user input is invalid")
 
 
-user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5)search person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
+user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook \n 2) To Update  Contact in The AddressBook \n 3) To  Delete The Contact in The AddressBook  \n 4) To Display Contact in the AddressBook \n 5) search person by city and state \n 6) view person by city and state\n 7) count person by city and state \n Enter Any Other Keys To Not Continue Any Operations: "))
 handle_user_input(user_input)
