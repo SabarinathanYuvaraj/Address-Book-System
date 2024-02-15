@@ -3,6 +3,17 @@ class AddressBook:
         self.contacts = []
 
     def add_contact(self, contact_details):
+        first_name = contact_details['first_name']
+        last_name = contact_details['last_name']
+        phone_number = contact_details['phone_number']
+        
+        for contact in self.contacts:
+            if (contact['first_name'] == first_name and
+                contact['last_name'] == last_name and
+                contact['phone_number'] == phone_number):
+                print("The contact already exists.")
+                return
+
         self.contacts.append(contact_details)
         print("The Contact Saved Successfully!!")
 
@@ -48,11 +59,11 @@ class AddressBookMain:
         if name not in self.address_books:
             self.address_books[name] = AddressBook()
             print(f"Address book '{name}' created successfully.")
-            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook  \n 2) To  Update  The AddressBook \n 3) To Delete Contact To The AddressBook  \n 4) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To First The AddressBook \n 2) To Add New Contact To Second The AddressBook \n 3) To  Update  The AddressBook \n 4) To Delete Contact To The AddressBook  \n 5) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
             handle_user_input(user_input)
         else:
             print(f"Address book '{name}' already exists.")
-            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook  \n 2) To  Update  The AddressBook \n 3) To Delete Contact To The AddressBook  \n 4) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
+            user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To First The AddressBook \n 2) To Add New Contact To Second The AddressBook \n 3) To  Update  The AddressBook \n 4) To Delete Contact To The AddressBook  \n 5) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
             handle_user_input(user_input)
 
     def add_new_contact_from_console(self, name):           
@@ -138,23 +149,24 @@ class AddressBookMain:
 
 address_book_main = AddressBookMain()
 def handle_user_input(user_input):
-    if user_input >= 0 and user_input <= 4:
+    if user_input >= 0 and user_input <= 5:
         if user_input == 0:
             address_book_main.add_new_address_book("Friends")
             address_book_main.add_new_address_book("Family")
         if user_input == 1:
             address_book_main.add_new_contact_from_console("Friends")
-            address_book_main.add_new_contact_from_console("Family")
         if user_input == 2:
-            address_book_main.edit_contact_from_console("Friends")
+            address_book_main.add_new_contact_from_console("Family") 
         if user_input == 3:
-            address_book_main.delete_contact("Friends")
+            address_book_main.edit_contact_from_console("Friends")
         if user_input == 4:
+            address_book_main.delete_contact("Friends")
+        if user_input == 5:
             address_book_main.display_all_contacts("Friends")
             address_book_main.display_all_contacts("Family")
     else:
         print("The given user input is invalid")
 
 
-user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To The AddressBook  \n 2) To  Update  The AddressBook \n 3) To Delete Contact To The AddressBook  \n 4) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
+user_input = int(input("Enter The Number \n 0) To Create New AddressBook \n 1) To Add New Contact To First The AddressBook \n 2) To Add New Contact To Second The AddressBook \n 3) To  Update  The AddressBook \n 4) To Delete Contact To The AddressBook  \n 5) To Display Contact in the AddressBook \n Enter Any Other Keys To Not Continue Any Operations: "))
 handle_user_input(user_input)
