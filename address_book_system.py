@@ -20,7 +20,7 @@ class AddressBook:
 
     def display_all_contacts(self):
         sorted_contacts = sorted(self.contacts , key= lambda x : x['first_name'])
-        self.contacts = sorted_contacts
+        # self.contacts = sorted_contacts
         for contact in sorted_contacts:
             self.display_contact(contact)
 
@@ -232,14 +232,39 @@ class AddressBookMain:
 
         print("Count of Persons by City:")
         print(self.count_person_by_city)
+        
+    def sort_contacts_by_city_state_or_zip(self):
+        address_book = self.address_books.get(AddressBookMain.address_book_name)
+        if address_book:
+            # Sort contacts by city
+            sorted_contacts_by_city = sorted(address_book.contacts, key=lambda x: x['city'])
+            print("the contacts sorted by the city")
+            for sorted_contact_by_city in sorted_contacts_by_city:
+                address_book.display_contact(sorted_contact_by_city)
+            print("-----------------------------------------------------------")
 
+            # Sort contacts by state
+            sorted_contacts_by_state = sorted(address_book.contacts, key=lambda x: x['state'])
+            print("the contacts sorted by the state")
+            for sorted_contact_by_state in sorted_contacts_by_state:
+                address_book.display_contact(sorted_contact_by_state)
+            print("-----------------------------------------------------------")
+
+            # Sort contacts by zip code
+            sorted_contacts_by_zip = sorted(address_book.contacts, key=lambda x: x['zip_code'])
+            print("the contacts sorted by the zip_code")
+            for sorted_contact_by_zip in sorted_contacts_by_zip:
+                address_book.display_contact(sorted_contact_by_zip)
+            print("-----------------------------------------------------------")
+        else:
+            print("Address book not found.")
 
 
                 
 
 address_book_main = AddressBookMain()
 def handle_user_input(user_input): 
-    if user_input >= 0 and user_input <= 7:
+    if user_input >= 0 and user_input <= 8:
         if user_input == 0:
             address_book_main.add_new_address_book()            
         if user_input == 1:
@@ -258,6 +283,8 @@ def handle_user_input(user_input):
             address_book_main.view_persons_by_City_and_State()
         if user_input == 7:
             address_book_main.count_persons_by_City_and_State()
+        if user_input == 8:
+            address_book_main.sort_contacts_by_city_state_or_zip()
     else:
         print("The given user input is invalid")
 
