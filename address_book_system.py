@@ -19,7 +19,9 @@ class AddressBook:
         # print(self.contacts)
 
     def display_all_contacts(self):
-        for contact in self.contacts:
+        sorted_contacts = sorted(self.contacts , key= lambda x : x['first_name'])
+        self.contacts = sorted_contacts
+        for contact in sorted_contacts:
             self.display_contact(contact)
 
     def edit_contact(self, first_name, last_name, new_details):
@@ -49,6 +51,12 @@ class AddressBook:
         print("Phone Number:", contact['phone_number'])
         print("Email:", contact['email'])
         print("--------------------------")
+        
+    def __str__(self):
+        contact_string = ""
+        for contact in self.contacts:
+            contact_string += f"First Name: {contact['first_name']}, Last Name: {contact['last_name']}, Address: {contact['address']}, City: {contact['city']}, State: {contact['state']}, Zip Code: {contact['zip_code']}, Phone Number: {contact['phone_number']}, Email: {contact['email']}\n"
+        return contact_string
 
 
 class AddressBookMain:
