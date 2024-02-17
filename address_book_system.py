@@ -1,3 +1,5 @@
+import csv , json
+
 class AddressBook:
     def __init__(self):
         self.contacts = []
@@ -16,7 +18,7 @@ class AddressBook:
 
         self.contacts.append(contact_details)
         print("The Contact Saved Successfully!!")
-        # print(self.contacts)
+        print(self.contacts)
 
     def display_all_contacts(self):
         sorted_contacts = sorted(self.contacts , key= lambda x : x['first_name'])
@@ -258,13 +260,54 @@ class AddressBookMain:
             print("-----------------------------------------------------------")
         else:
             print("Address book not found.")
+            
+    def read_or_write_in_text_file(self):
+        f1 = open('demo.txt' , 'r')
+        print(f1.read())
+        # f2 = open('demo','w')
+        # f2.write("hello everyone")
+        f3 = open('demo.txt' ,'a')
+        for address_book_name,address_book in self.address_books.items():
+          f3.write(f" the address book name :{address_book_name}  \n ")
+          count1 = 1
+          for contact in address_book.contacts:
+              print("--------------------------------")
+              f3.write(f" the contact details :{count1})   {contact} \n  ")
+              count1 += 1
+          count1 = 1
+              
+             
+    def read_or_write_in_csv_file(self):
+        with open('dummy.csv', 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                print(row)
+        with open('dummy.csv', "w") as file1:       
+            writer = csv.writer(file1)
+            for address_book_name,address_book in self.address_books.items():
+                    writer.writerow([f" the address book name :{address_book_name}  \n "])
+                    count1 = 1
+                    for contact in address_book.contacts:
+                        print("--------------------------------")
+                        writer.writerow([f" the contact details :{count1})   {contact} \n  "])
+                        count1 += 1
+                    count1 = 1   
+                                 
+    def read_or_write_in_json_file(self):
+        with open("trail.json", "r") as f1:
+            reader = json.load(f1)
+            print(reader)
 
+        with open("trail.json", "w") as f2:
+                for address_book_name, address_book in self.address_books.items():
+                    json.dump({address_book_name: address_book.contacts}, f2, indent=4)
+                    f2.write('\n')
 
                 
 
 address_book_main = AddressBookMain()
 def handle_user_input(user_input): 
-    if user_input >= 0 and user_input <= 8:
+    if user_input >= 0 and user_input <= 11:
         if user_input == 0:
             address_book_main.add_new_address_book()            
         if user_input == 1:
@@ -285,6 +328,12 @@ def handle_user_input(user_input):
             address_book_main.count_persons_by_City_and_State()
         if user_input == 8:
             address_book_main.sort_contacts_by_city_state_or_zip()
+        if user_input == 9:
+            address_book_main.read_or_write_in_text_file()
+        if user_input == 10:
+            address_book_main.read_or_write_in_csv_file()
+        if user_input == 11:
+            address_book_main.read_or_write_in_json_file()            
     else:
         print("The given user input is invalid")
 
