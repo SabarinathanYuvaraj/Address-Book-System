@@ -275,39 +275,10 @@ class AddressBookMain:
               f3.write(f" the contact details :{count1})   {contact} \n  ")
               count1 += 1
           count1 = 1
-              
-             
-    def read_or_write_in_csv_file(self):
-        with open('dummy.csv', 'r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                print(row)
-        with open('dummy.csv', "w") as file1:       
-            writer = csv.writer(file1)
-            for address_book_name,address_book in self.address_books.items():
-                    writer.writerow([f" the address book name :{address_book_name}  \n "])
-                    count1 = 1
-                    for contact in address_book.contacts:
-                        print("--------------------------------")
-                        writer.writerow([f" the contact details :{count1})   {contact} \n  "])
-                        count1 += 1
-                    count1 = 1   
-                                 
-    # def read_or_write_in_json_file(self):
-    #     with open("trail.json", "r") as f1:
-    #         reader = json.load(f1)
-    #         print(reader)
-
-    #     with open("trail.json", "w") as f2:
-    #             for address_book_name, address_book in self.address_books.items():
-    #                 json.dump({address_book_name: address_book.contacts}, f2, indent=4)
-    #                 f2.write('\n')
-
-                
 
 address_book_main = AddressBookMain()
 def handle_user_input(user_input): 
-    if user_input >= 0 and user_input <= 11:
+    if user_input >= 0 and user_input <= 9:
         if user_input == 0:
             address_book_main.add_new_address_book()            
         if user_input == 1:
@@ -330,10 +301,6 @@ def handle_user_input(user_input):
             address_book_main.sort_contacts_by_city_state_or_zip()
         if user_input == 9:
             address_book_main.read_or_write_in_text_file()
-        if user_input == 10:
-            address_book_main.read_or_write_in_csv_file()
-        # if user_input == 11:
-        #     address_book_main.read_or_write_in_json_file()            
     else:
         print("The given user input is invalid")
 
