@@ -293,15 +293,15 @@ class AddressBookMain:
                         count1 += 1
                     count1 = 1   
                                  
-    def read_or_write_in_json_file(self):
-        with open("trail.json", "r") as f1:
-            reader = json.load(f1)
-            print(reader)
+    # def read_or_write_in_json_file(self):
+    #     with open("trail.json", "r") as f1:
+    #         reader = json.load(f1)
+    #         print(reader)
 
-        with open("trail.json", "w") as f2:
-                for address_book_name, address_book in self.address_books.items():
-                    json.dump({address_book_name: address_book.contacts}, f2, indent=4)
-                    f2.write('\n')
+    #     with open("trail.json", "w") as f2:
+    #             for address_book_name, address_book in self.address_books.items():
+    #                 json.dump({address_book_name: address_book.contacts}, f2, indent=4)
+    #                 f2.write('\n')
 
                 
 
@@ -332,8 +332,8 @@ def handle_user_input(user_input):
             address_book_main.read_or_write_in_text_file()
         if user_input == 10:
             address_book_main.read_or_write_in_csv_file()
-        if user_input == 11:
-            address_book_main.read_or_write_in_json_file()            
+        # if user_input == 11:
+        #     address_book_main.read_or_write_in_json_file()            
     else:
         print("The given user input is invalid")
 
