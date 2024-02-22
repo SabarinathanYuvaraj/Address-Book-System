@@ -296,6 +296,7 @@ class AddressBookMain:
     def read_or_write_in_json_file(self):
         with open("trail.json", "r") as f1:
             reader = json.load(f1)
+            
             print(reader)
 
         with open("trail.json", "w") as f2:

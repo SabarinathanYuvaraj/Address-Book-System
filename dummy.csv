@@ -1,0 +1,12 @@
+" the address book name :ram  
+ "
+" the contact details :1)   {'first_name': 'q', 'last_name': 'q', 'address': 'q', 'city': 'q', 'state': 'q', 'zip_code': 'q', 'phone_number': '1234567890', 'email': 'q'} 
+  "
+" the contact details :2)   {'first_name': 'w', 'last_name': 'w', 'address': 'w', 'city': 'w', 'state': 'w', 'zip_code': 'w', 'phone_number': '1234567890', 'email': 'w'} 
+  "
+" the address book name :tom  
+ "
+" the contact details :1)   {'first_name': 'c', 'last_name': 'c', 'address': 'c', 'city': 'c', 'state': 'c', 'zip_code': 'c', 'phone_number': '1234567890', 'email': 'c'} 
+  "
+" the contact details :2)   {'first_name': 'b', 'last_name': 'b', 'address': 'b', 'city': 'b', 'state': 'b', 'zip_code': 'b', 'phone_number': '1234567890', 'email': 'b'} 
+  "
